@@ -1,0 +1,22 @@
+1. Teacher 테이블
+1) teacher 테이블 생성
+
+ (1) create table TEACHER(); -> TEACHER 테이블 생성
+
+ (2) () 안에 table의 column 생성
+
+ (3) primary key(기본키) : 중복된 값을 허용하지 않기 위한 컬럼
+
+ (4) candidate key(후보키) : 기본키가 될 자격이 있는 컬럼들
+
+2) teacher 테이블에 데이터 추가하기
+
+ (1) insert into TEACHER values();
+
+ (2) valuese의 () 안에 column의 순서대로 값을 명시하여야 한다.
+
+ (3) oracle DB에서는 문자열은 ' ' 안에 넣어줘야 한다. -> " " 은 사용하지 않음
+
+ (4) insert, delete, update 쿼리 문에 대해서는 해당 데이터가 물리적으로 DB에 저장될 수 있도록, 마지막에 commit; 코드를 반드시 작성해야 한다.
+
+ (5) 만약 똑같이 1, '홍길동', '남' 을 추가한다면 primary 키가 같기 때문에 추가가 되지 않는다. primary 키만 다르다면 상관 없다.

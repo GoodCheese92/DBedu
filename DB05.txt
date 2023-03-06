@@ -1,0 +1,150 @@
+1. DB where(조건)
+- 특정한 조건에 맞는 내용을 검색하는 명령어
+
+1) 사원테이블에서 성이 Smith인 사원의 정보를 사번, 성, 급여 순으로 출력
+
+ --> SELECT employee_id, first_name, salary FROM employees WHERE last_name = 'Smith';
+
+ --> WHERE에 조건을 쓴다. 
+
+ --> ' ' 으로 조건을 안에 넣는다.
+
+ --> ' ' 안에는 대소문자 구분한다.
+
+2) 사원테이블에서 이름이 'Michael'인 사원의 사번, 이름, 입사일을 출력
+
+ --> SELECT employee_id, first_name, hire_date FROM employees WHERE first_name = 'Michael';
+
+3) 사원테이블에서 급여가 5000이상인 사원의 사번, 이름, 급여 순으로 출력
+
+ --> SELECT employee_id, first_name, salary FROM employees WHERE salary >= 5000;
+
+ --> WHERE에서 연산기호도 사용 가능
+
+4) 사번이 151번 이상인 사람의 사번, 이름, 입사일을 출력
+
+ --> SELECT employee_id, first_name, hire_date FROM employees WHERE employee_id >= 151;
+
+ --> '=', '>', '<', '<=', '>=', '!=' 사용 가능, 같다를 비교할 때 '='가 하나인 것 주목
+
+5) 입사일이 2006년 1월 1일 이후에 입사한 사람들의 사번, 이름, 입사일을 출력
+
+ --> SELECT employee_id, first_name, hire_date FROM employees WHERE hire_date > '01/01/2006';
+
+6) 직종이 'SA_REP'인 사원들의 모든 정보를 출력
+
+ --> SELECT * FROM employees WHERE job_id = 'SA_REP';
+
+7) 이름이 Lex인 사원의 사번, 이름 출력
+
+ --> SELECT employee_id, first_name FROM employees WHERE first_name = 'Lex';
+
+8) 이름이 알파벳 순으로 Lex 이후인 사원들의 사번, 이름 출력
+
+ --> SELECT employee_id, first_name FROM employees WHERE first_name > 'Lex';
+
+ --> 알파벳은 크기로 비교할 수 있다.
+
+ --> SELECT employee_id, first_name FROM employees WHERE first_name > 'L';
+
+ --> 'L' 만 써서 'L' 이후인 사람들을 찾고 싶다면 'M' 을 써야 한다. 그 이유는 '>'는 '>='로 인식하는 것 같다.
+
+9) null 체크 : 사원테이블에서 보너스를 받고 있지 않은 사원들의 정보를 사번, 이름, 보너스 순으로 출력
+
+ --> SELECT employee_id, first_name, commission_pct FROM employees WHERE commission_pct is null;
+
+ --> is : null을 비교할 때는 '=' 대신에 'is'를 사용
+
+ --> 자바와 다르므로 생각해서 써야한다.
+
+10) 보너스를 받는 사원들의 사번, 이름, 보너스를 출력
+
+ --> SELECT employee_id, first_name, commission_pct FROM employees WHERE commission_pct is not null;
+
+ --> null이 아닌 사람들을 찾을 째는 'is not' 사용
+
+11) DB의 논리연산
+
+ --> '&&'가 아닌 'and' 사용
+
+ --> '||'가 아닌 'or' 사용
+
+ --> sql에서 '||'은 이어붙이기 의미이다.
+
+12) 사원테이블에서 급여가 5000을 초과하면서 10000이하인 사원들의 정보를 사번, 이름, 급여 순으로 출력
+
+ --> SELECT employee_id, first_name, salary FROM employees WHERE salary > 5000 AND salary <= 10000;
+
+ --> AND와 OR로 키워드를 사용한다는 것 기억!!
+
+13) 급여가 5000 미만이거나 20000 이상인 사원들의 사번, 급여를 출력
+
+ --> SELECT employee_id, salary FROM employees WHERE salary < 5000 OR salary >= 20000;
+
+ --> 양 쪽으로 벌어진 부등호는 'or' 사용
+
+14) 2005년 ~ 2006년 사이에 입사한 사원들의 사번, 이름, 입사일을 출력
+
+ --> SELECT employee_id, first_name, hire_date FROM employees WHERE hire_date >= '01/01/2005' AND hire_date <= '12/31/2006';
+
+15) in 연산자 : or 연산자를 대체하는 키워드
+
+ (1) in 연산자를 사용하지 않는 경우
+
+  --> SELECT employee_id, first_name, job_id FROM employees WHERE job_id = 'SA_MAN' OR job_id = 'IT_PROG' OR job_id = 'HR_REP';
+
+ (2) in 연산자를 사용하여 (1)의 쿼리문을 수정해 보자!!
+
+  -->  SELECT employee_id, first_name, job_id FROM employees WHERE job_id IN('SA_MAN', 'IT_PROG', 'HR_REP');
+
+ 
+
+16) 사번이 100, 102, 104, 106번인 사원들의 정보를 사번, 이름 순으로 출력
+
+ --> SELECT employee_id, first_name FROM employees WHERE employee_id IN(100, 102, 104, 106);
+
+ --> 'or'을 사용했다면 코드가 길어지고 'or'를 3번 써야 했다.
+
+17) 급여가 2200, 3200, 5000, 6800인 사원들의 정보를 사번, 이름, 급여 순으로 출력
+
+ --> SELECT employee_id, first_name, salary FROM employees WHERE salary IN(2200, 3200, 5000, 6800);
+
+18) between 연산자 : A와 B 사이의 값을 검색할 때 사용
+
+ - between 연산자는 초과, 미만 등은 비교할 수 없다.
+
+ (1) between를 사용하지 않는 경우
+
+  --> 05년도에 입사한 사원들의 사번, 이름, 입사일 출력
+
+  --> SELECT employee_id, first_name, hire_date FROM employees WHERE hire_date >= '01/01/2005' AND hire_date <= '12/31/2005';
+
+ (2) between을 사용하여 (1)의 쿼리문을 수정해 보자!!
+
+  --> SELECT employee_id, first_name, hire_date FROM employees WHERE hire_date BETWEEN '01/01/2005' AND '12/31/2005';
+
+19) 급여가 5000이상이고 6000이하인 사원들의 사번, 이름, 급여를 출력
+
+ --> SELECT employee_id, first_name, salary FROM employees WHERE salary BETWEEN 5000 AND 6000;
+
+20) like 연산자(유사검색) : 지정한 문장과 일치하거나, 문장을 포함하고 있는 자원을 검색
+
+ (1) % : 모든 값
+
+ (2) _ : 하나의 값
+
+  ex1) 'A%' : A로 시작하는 모든 데이터(Apple, Actor, ...)
+
+  ex2) '%a' : a로 끝나는 모든 데이터(korea, kia, ...)
+
+  ex3) '%a%' : 값의 어디든 a가 포함된 모든 데이터(apple, operator, ....)
+
+  ex4) 'A____' : '_'를 A뒤에 4개 입력, A로 시작하되 전체 길이가 5글자인 데이터(Apple, Actor, ...)
+
+  --> 이름이 D로 시작하는 사원의 이름을 출력
+
+  --> SELECT first_name FROM employees WHERE first_name LIKE 'D%';
+
+  --> 이름이 d로 끝나는 모든 사원의 이름을 출력
+
+  --> SELECT first_name FROM employees WHERE first_name LIKE '%d';

@@ -1,0 +1,30 @@
+1. DB 문자 관련 함수
+- 문자열을 연결하는 함수 : concat(문자열 1, 문자열 2);
+
+- 문자열을 연결하는 기호 : ||/
+
+1) Hello 문자열과 Bye 문자열 연결
+
+ --> SELECT concat('Hello', 'Bye') FROM dual;
+
+ --> 임시 테이블 dual
+
+2) first_name과 last_name을 묶어서 조회
+
+ --> SELECT concat(first_name, last_name) full_name, hire_date FROM employees;
+
+3) 연산자 사용
+
+ --> SELECT first_name || last_name full_name FROM employees;
+
+ --> '+'가 문자열 더하기 아님!!, '||'을 사용해야 함
+
+4) 실제수령월급 = 월급 + (월급*보너스)
+
+ --> SELECT employee_id, first_name, (salary + (salary * commission_pct)) pay FROM employees;
+
+5) 입사일로부터 1년 뒤의 날짜를 출력
+
+ --> SELECT hire_date, (hire_date + 365) years FROM employees;
+
+ --> date 타입 자료형은 +, - 등의 연산이 가능하다.
