@@ -148,3 +148,5 @@
   --> 이름이 d로 끝나는 모든 사원의 이름을 출력
 
   --> SELECT first_name FROM employees WHERE first_name LIKE '%d';
+  
+  test
